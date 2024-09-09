@@ -1,0 +1,64 @@
+*
+{
+    background-color: rgb(203, 144, 240);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    -webkit-user-drag: none;
+}
+body
+{
+    overflow: hidden;
+}
+.container
+{
+    position: relative;
+    text-align: center;
+    justify-content: center;
+}
+.inner
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+}
+.landingHeart
+{
+    scale: .1;
+}
+.container .inner img
+{
+    position: absolute;
+}
+.container .inner h1
+{
+    position: absolute;
+    
+    font-size: 2em;
+    scale: 0;
+    z-index: 2;
+    color: black;
+    background-color: transparent;
+}
+.container .inner .yesButton, .container .inner .noButton
+{
+    margin-top: 15%;
+}
+.container .inner .yesButton
+{
+    margin-left: 5em;
+}
+.container .inner .noButton
+{
+    margin-left: -5em;
+}
+.container .inner .catPleaseIMG
+{
+    z-index: 2;
+    scale: 0;
+    margin-top: -20%;
+    width: 15%;
+    height: 25%;
+}

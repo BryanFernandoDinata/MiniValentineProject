@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--GSAP-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+</head>
+<body>
+    <div class="container">        
+        <div class="inner">
+            <!--<i class="fa-solid fa-heart fa-2xl" data-fa-mask="fa-solid fa-heart" id="landingHeart" onclick="clickHeart()"></i>-->
+            <img src="Images/WhiteHeart.png" class="landingHeart" onclick="clickHeart()" alt="">
+            <h1 id="titleH1">MIND IF I TAKE A BIT OF YOUR TIME?</h1>
+            
+            <img src="Images/catPlease.jpeg" class="catPleaseIMG" id="catPleaseIMGId" alt="">
+            <h1 class="noButton" id="noButtonID" onclick="clickNo()">NO</h1>
+            <h1 class="yesButton" id="yesButtonID" onclick="clickYes()">YES</h1>    
+        </div>
+    </div>
+</body>
+<script>
+    //gsap.to("h1", {x:400, fill:"yellow", duration:3});
+    const answersForNo = ["ARE YOU SURE, PLEASE JUST A FEW SECONDS", "ARE YOU REALLY SURE, PLEASE DONT GO", "ARE YOU REALLY REALLY SURE, PLEASE STAY", 
+    "ARE YOU SURE, I'M GONNA BE SAD", "ARE YOU SURE, I'M GONNA BE REALLY SAD", "ARE YOU SURE, I'M GONNA BE REALLY REALLY SAD"];
+    const answersForYes = [
+        "THANK YOU :)", "DO WANNA BE CLOSER WITH ME?", "ME TO :)", "ARE YOU FREE THIS SUNDAY?", 
+        "WANNA GO TO CHURCH TOGETHER?", "THANK YOU :), LET ME KNOW ON INSTAGRAM"
+    ];
+
+    const imgForNo = ["Images/catPlease.jpeg", "Images/catPlease2.jpg", "Images/CatPlease3.jpg", "Images/CatPlease4.jpg", "Images/CatPlease5.jpg", "Images/CatPlease6.jpg"];
+    const imgForYes = ["Images/catThumbsup.jpg", "Images/So_happy_smiling_cat.jpg", "Images/cathappy3.jpg", "Images/cathappy4.jpeg", "Images/cathappy5.jpeg", "Images/cathappy6.jpeg"];
+
+    const titleText = document.getElementById('titleH1');
+    const catImageElement = document.getElementById("catPleaseIMGId");
+    const noButtonElement = document.getElementById("noButtonID");
+    const yesButtonElement = document.getElementById("yesButtonID");
+
+
+    let currentIndex = 0;
+    let currentYesIndex = 0;
+
+
+    function clickHeart()
+    {
+        //alert("I am clicked");
+        gsap.to(".container .inner .landingHeart", {scale: 25, duration:5, ease: "power3.out"});
+        gsap.to(".container .inner h1", {stagger:.3, scale: 1, duration:.5, ease: "power3.out"});
+        gsap.to(".container .inner .catPleaseIMG", {scale: 1, duration:.75, ease: "power3.out"});
+    }
+
+    function clickNo() 
+    {
+        titleText.textContent = answersForNo[currentIndex];
+        catImageElement.src = imgForNo[currentIndex];
+        currentYesIndex = 0;
+        currentIndex++;
+        if (currentIndex >= answersForNo.length) 
+        {
+            currentIndex = 0;
+            titleText.textContent = "JUST A FEW SECONDS PLEASE";
+        }
+    }
+
+    function clickYes()
+    {
+        titleText.textContent = answersForYes[currentYesIndex];
+        catImageElement.src = imgForYes[currentYesIndex];
+        currentYesIndex++;
+        
+        if(currentYesIndex == 3 || currentYesIndex == 1)
+        {
+            yesButtonElement.textContent = "NEXT";
+            noButtonElement.textContent = "NO";
+        }
+        else if(currentYesIndex >= 6)
+        {
+            yesButtonElement.textContent = "OKAY";
+            openInstagram();
+        }
+        else
+        {
+            yesButtonElement.textContent = "YES"
+        }
+        
+        if (currentYesIndex >= answersForYes.length) 
+        {
+            //currentYesIndex = answersForyes.length;
+            catImageElement.src = imgForYes[5];
+            titleText.textContent = "THANK YOU :), LET ME KNOW ON INSTAGRAM";
+        }
+    }
+    function openInstagram()
+    {
+        window.open("https://www.instagram.com/bryan_f.d/");
+    }
+</script>
+</html>
